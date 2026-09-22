@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/1381177639.svg)](https://doi.org/10.5281/zenodo.22894949)
 # Gain-Invariant Sample Entropy Profiling for Electrohysterography
 
 Analysis code and manuscript results for an ICASSP 2027 submission proposing
