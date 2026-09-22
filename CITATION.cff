@@ -1,0 +1,90 @@
+cff-version: 1.2.0
+message: >-
+  If you use this code, please cite both the software (this file) and the
+  paper it accompanies (see preferred-citation below). If you use the
+  sample-entropy-profile method itself, please also cite the parent method
+  paper and the released implementation it derives from -- see
+  docs/provenance.md and the references section at the end of this file.
+type: software
+title: "Gain-Invariant Sample Entropy Profiling for Electrohysterography"
+abstract: >-
+  Analysis code for gain-invariant (GI) sample entropy profiling. The standard
+  finite-resolution SampEn-profile implementation rounds pairwise Chebyshev
+  distances to three decimals in signal units before forming the tolerance
+  support, which makes the resulting profile summaries sensitive to constant
+  positive multiplicative gain. GI-SampEn profiling divides each window by its
+  own standard deviation before an otherwise unchanged profiling stage, which
+  removes that sensitivity. This repository reproduces the parity check, the
+  positive-gain stress test, the unrounded control, the resolution
+  sensitivity analyses, the fixed dimensionless grid check, and the EHG9 and
+  EHG9-EHG12 statistical analyses reported in the paper.
+version: "1.0.0"
+date-released: 2026-09-22
+license: MIT
+repository-code: "https://github.com/shivapratap/gi-sampen-ehg"
+
+# NOTE: co-authors are to be added here before public release, in the order
+# agreed for the manuscript. Only authors verifiable from existing repository
+# metadata are listed at present -- nothing has been assumed.
+authors:
+  - family-names: Gopakumar
+    given-names: Shivapratap
+    email: shivapratap@gmail.com
+
+keywords:
+  - sample entropy
+  - entropy profile
+  - electrohysterography
+  - EHG
+  - gain invariance
+  - quantization
+  - biomedical signal processing
+
+# --------------------------------------------------------------------------
+# The paper. This entry is PROVISIONAL: the manuscript is under review and
+# has no DOI, volume, pages or publication date. Do not add a DOI here until
+# one is actually issued. Update `status` to "published" on acceptance.
+# --------------------------------------------------------------------------
+preferred-citation:
+  type: conference-paper
+  title: "Gain-Invariant Sample Entropy Profiling for Electrohysterography"
+  status: submitted
+  year: 2027
+  collection-title: >-
+    Submitted to the IEEE International Conference on Acoustics, Speech and
+    Signal Processing (ICASSP)
+  authors:
+    - family-names: Gopakumar
+      given-names: Shivapratap
+
+references:
+  - type: software
+    title: "sampen-profile: sample entropy profiling using the cumulative histogram method"
+    abstract: >-
+      Released Python implementation of the standard finite-resolution
+      sample-entropy profile. Pinned in this repository as a test-only
+      dependency at commit 263b72f7b906208241291c0579e8ec103fb52d79. It was
+      published after the analysis here was run and produced no result
+      reported in the paper; it is used to verify parity.
+    version: "0.1.0"
+    repository-code: "https://github.com/shivapratap/sampen-profile"
+    authors:
+      - family-names: Gopakumar
+        given-names: Shivapratap
+  - type: software
+    title: "Amrita BioSignal Feature Engine"
+    abstract: >-
+      Produced the cached finite-resolution feature table used here as the
+      parity target, at commit 4dc5025b265f300d7e3375118f7794bfb5fca711.
+    version: "0.2.0.dev0"
+    repository-code: "https://github.com/shivapratap/amrita-biosignal-feature-engine"
+    authors:
+      - family-names: Gopakumar
+        given-names: Shivapratap
+  - type: database
+    title: "Icelandic 16-electrode Electrohysterogram Database"
+    abstract: >-
+      Public database distributed by PhysioNet; not redistributed in this
+      repository. Cite the database and PhysioNet as instructed on its landing
+      page. See data/README.md.
+    url: "https://physionet.org/content/ehgdb/"

@@ -1,0 +1,52 @@
+# Analysis configuration.
+#
+# Every path here is relative to the repository root unless it is absolute.
+# Nothing machine-specific is committed: both entries below point at a sibling
+# checkout and are expected to be edited, or overridden by the environment
+# variables named alongside them, on any other machine.
+
+paths:
+  # PhysioNet Icelandic 16-electrode EHG database (WFDB recordings,
+  # annotations, RECORDS). Not redistributed here -- see data/README.md.
+  # Environment override: EHG_RAW_DIR
+  raw_dir: "../EHG-Complexity-Pipeline/Paper1/paper1_reproducible_pipeline/data/raw"
+
+  # The prior study's pipeline directory. Supplies preprocessing.py, the
+  # window manifest, the cached finite-resolution feature table used as the
+  # parity target, the event-unit tables and the per-channel model results.
+  # Environment override: GI_SAMPEN_UPSTREAM_DIR
+  upstream_dir: "../EHG-Complexity-Pipeline/Paper1/paper1_reproducible_pipeline"
+
+analysis:
+  # Primary channel. EHG9 is the manuscript's primary analysis channel.
+  channel: EHG9
+
+  # Channels used by the cross-channel replication (Table 1).
+  cross_channels: [EHG9, EHG10, EHG11, EHG12]
+
+  # Filter band, as defined by the upstream preprocessing module.
+  band: fwh
+
+  # Window length in samples after decimation: 60 s at 20 Hz.
+  expected_samples: 1200
+
+# --- Values below are recorded for documentation only. -----------------------
+# They are defined in code and are NOT read from this file, because changing
+# them would change the scientific definition of the method. They are listed
+# here so a reader can see the whole specification in one place.
+#
+# Source: src/gi_sampen/gi_profile.py
+constants_for_reference:
+  embedding_dimension: 2            # EMBEDDING_DIMENSION
+  r_fraction: 0.2                   # R_FRACTION, for the fixed-r comparator
+  profile_distance_decimals: 3      # standard finite-resolution rounding, signal units
+  gi_distance_decimals: 3           # GI rounding, in units of the window's own SD
+  profile_epsilon: 1.0e-12          # PROFILE_EPSILON
+  grid_min_valid_fraction: 0.90     # gi_summaries_grid
+
+# Gains used by the positive-gain stress test. Constant positive
+# multiplicative gain only -- the invariance claim is scoped to this.
+gain_stress_factors: [0.25, 0.5, 1.3, 2.0, 4.0, 7.1]
+
+# Relative tolerance at which GI summaries are required to be invariant.
+invariance_relative_tolerance: 1.0e-8

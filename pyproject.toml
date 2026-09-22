@@ -1,0 +1,74 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gi-sampen-ehg"
+version = "1.0.0"
+description = "Gain-invariant sample entropy profiling for electrohysterography"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+keywords = [
+    "sample entropy",
+    "entropy profile",
+    "electrohysterography",
+    "EHG",
+    "gain invariance",
+    "biomedical signal processing",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
+
+# Pinned to the versions that produced the manuscript numbers. Sample entropy
+# profiling is sensitive to floating-point detail in pairwise distance
+# computation and to scipy's cKDTree neighbour counting, and the profile
+# summaries use scipy.stats kurtosis/skew defaults, so these are held to
+# compatible-release ranges rather than left open. See docs/reproducibility.md.
+dependencies = [
+    "numpy>=2.3,<2.4",
+    "scipy>=1.16,<1.17",
+    "pandas>=2.3,<2.4",
+    "statsmodels>=0.14.5,<0.15",
+    "matplotlib>=3.10,<3.11",
+    "wfdb>=4.3,<5",
+    "PyYAML>=6",
+]
+
+[project.optional-dependencies]
+# sampen-profile is a VERIFICATION dependency only. It did not produce any
+# manuscript number -- it was published after this analysis was run. It is
+# pinned to an exact commit so that tests/test_standard_parity.py checks this
+# repository's implementation against the released one reproducibly.
+# See docs/provenance.md.
+test = [
+    "pytest>=7",
+    "sampen-profile @ git+https://github.com/shivapratap/sampen-profile.git@263b72f7b906208241291c0579e8ec103fb52d79",
+]
+figures = ["seaborn>=0.13,<0.14"]
+
+[project.urls]
+Repository = "https://github.com/shivapratap/gi-sampen-ehg"
+"Upstream method implementation" = "https://github.com/shivapratap/sampen-profile"
+
+[project.scripts]
+gi-sampen-reproduce = "gi_sampen.reproduce:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]
+markers = [
+    "requires_data: needs the PhysioNet recordings and the upstream cached tables; skipped by default and excluded from CI",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

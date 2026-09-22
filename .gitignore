@@ -1,0 +1,99 @@
+# ---------------------------------------------------------------------------
+# External data. Never committed.
+# ---------------------------------------------------------------------------
+# The PhysioNet Icelandic 16-electrode EHG database is public but large and is
+# not redistributed from here. See data/README.md.
+/data/raw/
+*.dat
+*.hea
+*.atr
+
+# ---------------------------------------------------------------------------
+# Deterministic intermediates. Regenerable from data/ + scripts/; excluded to
+# keep the repository small. Everything needed to verify a manuscript claim
+# lives in results/ and is tracked.
+# ---------------------------------------------------------------------------
+/work/
+
+# ---------------------------------------------------------------------------
+# Tracked on purpose -- do not add results/ to this file.
+#   results/tables/    manuscript tables and Figure/Table source data
+#   results/figures/   final figure (pdf/png/svg) and its source CSVs
+#   results/audits/    compact audit reports needed to verify manuscript claims
+#   data/manifests/    lightweight derived manifests and checksums
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# Python
+# ---------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+env/
+.tox/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# ---------------------------------------------------------------------------
+# Notebooks and scratch
+# ---------------------------------------------------------------------------
+.ipynb_checkpoints/
+*-checkpoint.ipynb
+scratch/
+tmp/
+*.tmp
+*.bak
+*.orig
+*~$*
+
+# ---------------------------------------------------------------------------
+# Logs and partial runs
+# ---------------------------------------------------------------------------
+*.log
+*.jsonl
+*.FAILED.csv
+_partial/
+_partial_logs/
+
+# ---------------------------------------------------------------------------
+# Secrets and credentials
+# ---------------------------------------------------------------------------
+.env
+.env.*
+*.pem
+*.key
+*.pfx
+credentials.json
+secrets.yaml
+.netrc
+
+# ---------------------------------------------------------------------------
+# Editor and OS metadata
+# ---------------------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.sublime-*
+.spyderproject
+.spyproject
+
+# ---------------------------------------------------------------------------
+# Machine-specific configuration
+# ---------------------------------------------------------------------------
+# configs/analysis.yaml IS tracked and holds only relative paths. A local
+# override with absolute paths goes here instead and is never committed.
+/configs/analysis.local.yaml
+
+
+legacy/
